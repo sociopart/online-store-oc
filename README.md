@@ -9,6 +9,11 @@ Docker image for running an online store based on Opencart.
 1. `make setup`
 1. `make run`
 
+# First install
+1. `sudo chmod -R 0777 www/opencart`
+
+# After installation
+1. `sudo chmod -R 0755 www/opencart`
 
 # Commands
 You can launch that commands by using `make <название команды>`
