@@ -7,6 +7,9 @@ ifeq ($(UNAME),Linux)
 	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 	sudo apt update && sudo apt install docker-ce
 	sudo curl -L "https://github.com/docker/compose/releases/download/v$(DOCKER_VERSION)/docker-compose-Linux-x86_64" -o /usr/local/bin/docker-compose
+	sudo groupadd docker
+	sudo gpasswd -a $USER docker
+	newgrp docker
 endif
 
 ifeq ($(UNAME),Darwin)
@@ -18,7 +21,8 @@ run:
 	cd oc_docker_files && docker-compose up --build
 
 dockerclean:
-# TRUE is needed to bypass every step of deletion (in case something is already clean)
+# TRUE is needed to bypass every step of deletion 
+# (in case something is already clean)
 	docker-compose stop || true
 	docker-compose down || true
 	docker container stop $(docker container list -q) || true
