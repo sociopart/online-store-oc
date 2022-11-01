@@ -1,4 +1,4 @@
-version: '3'
+version: '4'
 services:
   php-fpm:
     build:
@@ -26,7 +26,6 @@ services:
   db:   
     build:
       context: ./database
-
     restart: always
     ports:
       - 3306:3306
@@ -34,12 +33,8 @@ services:
       - ./database/data/:/docker-entrypoint-initdb.d/
       - ./database/data/my.cnf:/etc/mysql/my.cnf
       - ./database/data/mysql:/var/lib/mysql
-    environment:
-      - ALLOW_EMPTY_PASSWORD=no
-      - MYSQL_DATABASE=estore
-      - MYSQL_USER=admin
-      - MYSQL_PASSWORD=admin
-      - MYSQL_ROOT_PASSWORD=root
+    env_file:
+      - secrets.env
     networks:
       - app-network
   adminer:

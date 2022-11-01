@@ -15,7 +15,7 @@ endif
 	sudo chmod +x /usr/local/bin/docker-compose
 
 run:
-	cd oc_docker_files && docker-compose up
+	cd oc_docker_files && docker-compose up --build
 
 dockerclean:
 # TRUE is needed to bypass every step of deletion (in case something is already clean)
