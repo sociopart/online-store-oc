@@ -12,6 +12,6 @@ RUN docker-php-ext-install -j$(nproc) iconv  \
 
 RUN docker-php-ext-install -j$(nproc) mysqli
 RUN docker-php-ext-install -j$(nproc) zip
-CMD ["php-fpm"]  
+CMD ["php-fpm"]
 EXPOSE 9000
 

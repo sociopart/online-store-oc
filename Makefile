@@ -7,15 +7,17 @@ ifeq ($(UNAME),Linux)
 	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 	sudo apt update && sudo apt install docker-ce
 	sudo curl -L "https://github.com/docker/compose/releases/download/v$(DOCKER_VERSION)/docker-compose-Linux-x86_64" -o /usr/local/bin/docker-compose
-	sudo groupadd docker
-	sudo gpasswd -a $USER docker
-	newgrp docker
 endif
 
 ifeq ($(UNAME),Darwin)
 	brew install docker-compose
 endif
 	sudo chmod +x /usr/local/bin/docker-compose
+
+docker:
+	sudo groupadd docker || true
+	sudo gpasswd -a $(USER) docker || true
+	newgrp docker
 
 run:
 	cd oc_docker_files && docker-compose up --build
