@@ -1,4 +1,4 @@
-version: '4'
+version: '3.7'
 services:
   php-fpm:
     build:
@@ -28,7 +28,7 @@ services:
       context: ./database
     restart: always
     ports:
-      - 3306:3306
+      - 3307:3306
     volumes:
       - ./database/data/:/docker-entrypoint-initdb.d/
       - ./database/data/my.cnf:/etc/mysql/my.cnf
