@@ -17,6 +17,11 @@ ifeq ($(UNAME),Darwin)
 endif
 	sudo chmod +x /usr/local/bin/docker-compose
 
+install:
+	cd oc_docker_files && docker-compose create 
+	cd oc_docker_files && docker-compose build 
+	cd oc_docker_files && docker-compose start
+	cd oc_docker_files && docker-compose run db sh
 run:
 	cd oc_docker_files && docker-compose up --build
 
